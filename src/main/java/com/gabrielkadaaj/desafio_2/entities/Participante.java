@@ -2,6 +2,9 @@ package com.gabrielkadaaj.desafio_2.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_participante")
 public class Participante {
@@ -14,6 +17,9 @@ public class Participante {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToMany(mappedBy = "participantes")
+    private List<Atividade> atividades = new ArrayList<>();
 
     public Participante(){}
 
@@ -46,4 +52,9 @@ public class Participante {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Atividade> getAtividades() { return atividades; }
+
+    public void setAtividades(List<Atividade> atividades) { this.atividades = atividades; }
+
 }
